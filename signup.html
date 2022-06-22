@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <link rel="stylesheet" href="assets/css/Join.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+<script type="text/javascript">
+function checkAll() {
+    if (!checkUserId(form.userid.value)) {
+        return false;
+    }
+    if (!checkPassword(form.userid.value, form.userpw.value)) {
+        return false;
+    }
+    
+    if (!checkName(form.username.value)) {
+        return false;
+    }
+    if (!checkTel(form.usertel.value)){
+    	return false;
+    }
+    alert("유효성 검사 완료!, 닫기를 눌러주세요!");
+    return true;
+}
+
+// 공백확인 함수
+function checkExistData(value, dataName) {
+    if (value == "") {
+        alert(dataName + " 입력해주세요!");
+        return false;
+    }
+    return true;
+}
+
+function checkUserId(id) {
+    //Id가 입력되었는지 확인하기
+    if (!checkExistData(id, "아이디를"))
+        return false;
+
+    var idRegExp = /^[a-zA-z0-9]{4,12}$/; //아이디 유효성 검사
+    if (!idRegExp.test(id)) {
+        alert("아이디는 영문 대소문자와 숫자 4~12자리로 입력해야합니다!");
+        form.userid.value = "";
+        form.userid.focus();
+        return false;
+    }
+    return true; //확인이 완료되었을 때
+}
+
+
+
+function checkPassword(id, pw) {
+    //비밀번호가 입력되었는지 확인하기
+    if (!checkExistData(pw, "비밀번호를"))
+        return false;       
+
+    var password1RegExp = /^[a-zA-z0-9]{4,12}$/; //비밀번호 유효성 검사
+    if (!password1RegExp.test(pw)) {
+        alert("비밀번호는 영문 대소문자와 숫자 4~12자리로 입력해야합니다!");
+        form.userpw.value = "";
+        form.userpw.focus();
+        return false;
+    }
+
+    //아이디와 비밀번호가 같을 때..
+    if (id == pw) {
+        alert("아이디와 비밀번호는 같을 수 없습니다!");
+        form.userpw.value = "";
+        form.userpw.value = "";
+        form.userpw.focus();
+        return false;
+    }
+    return true; //확인이 완료되었을 때
+}
+
+function checkMail(mail) {
+    //mail이 입력되었는지 확인하기
+    if (!checkExistData(mail, "이메일을"))
+        return false;
+
+    var emailRegExp = /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
+    if (!emailRegExp.test(mail)) {
+        alert("이메일 형식이 올바르지 않습니다!");
+        form.mail.value = "";
+        form.mail.focus();
+        return false;
+    }
+    return true; //확인이 완료되었을 때
+}
+
+function checkName(name) {
+    if (!checkExistData(name, "이름을"))
+        return false;
+
+    var nameRegExp = /^[가-힣]{2,4}$/;
+    if (!nameRegExp.test(name)) {
+        alert("이름이 올바르지 않습니다.");
+        return false;
+    }
+    return true; //확인이 완료되었을 때
+}
+   function checkTel(tel) {
+    	if (!checkExistData(tel, "전화번호"))
+    		return false;
+    	var telRegExp = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}$/;
+    	if(!telRegExp.test(tel)){
+    		alert("전화번호 형식은 [2~3]-[3~4]-[4]입니다.");
+    		return false;
+    	}
+    	return true;
+   }
+
+</script>
+</head>
+<body>
+<div class="popup">
+    <h2>회원가입</h2>
+    <div class="con">
+    <table class="type1">
+        <caption>
+            <datalist>
+                <summary>회원가입 가입 폼</summary>
+                <div>아이디, 비밀번호 , 이름, 전화번호 </div>
+            </datalist>
+        </caption>
+            <colgroup class="hide">
+            <col style="width: 111px">
+            <col>
+            </colgroup>
+            <tbody>
+            <form name=form onsubmit="return checkAll()">
+                <tr>
+                    <th><label for="txt1">아이디</label><span> *</span></th>
+                    <td><input type="text" name="userid" placeholder="아이디를 입력해 주세요."></td>
+                </tr>
+                <tr>
+                    <th><label for="txt2">비밀번호</label><span> *</span></th>
+                    <td><input type="password" name="userpw" placeholder="비밀번호를 입력해 주세요."></td>
+                </tr>
+                <tr>
+                    <th><label for="txt3">이름</label><span> *</span></th>
+                    <td><input type="text" name="username" placeholder="이름을 입력해 주세요."></td>
+                </tr>
+                <tr>
+                    <th><label for="txt4">전화번호</label><span> *</span></th>
+                    <td><input type="text"  name="usertel" placeholder="전화번호를 입력해 주세요."></td>
+                </tr>
+            </tbody>
+    </table>
+</div>
+    <div class="txt_center">
+    <!-- <a href="#a" class="btn_type1">가입</a> -->
+    <input type="submit" id="btnsign" class="btn_type1" value="가입">
+    
+    <div>
+        
+        <input type="button" id="btnclose" class="btn_type2" value="닫기">    
+    </div>
+    
+</div>
+
+    
+    
+    </div>
+    </form>
+    <script>
+        let close = document.getElementById('btnclose')
+        close.addEventListener('click', () => {
+        location.href = 'login.html';
+});
+// let btnsign = document.getElementById('btnsign')
+//         btnsign.addEventListener('click', () => {
+//         location.href = 'login.html';
+// });
+    </script>
+</body>
+</html>

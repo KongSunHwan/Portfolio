@@ -1,0 +1,111 @@
+@use '../custom' as *;
+@use '../components/mixins' as *;
+
+.menu {
+  @include gradient;
+
+
+  li {
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-right: 10px;
+
+    a {
+      color: $white;
+      padding: 0 0.7rem;
+      text-transform: capitalize;
+      font-weight: 600;
+
+    }
+
+    // &:hover {
+    //   color: $white;
+    // }
+
+    &:hover:before,
+    &:hover:after {
+      transform: scale(1);
+    }
+    
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      margin-top: -10px;
+      border-radius: 50%;
+      transform: scale(0);
+      transition: 0.2s ease transform;
+    }
+    
+    &:before {
+      top: 0;
+      left: 10px;
+      width: 6px;
+      height: 6px;
+    }
+    
+    &:after {
+      top: 5px;
+      left: 18px;
+      width: 4px;
+      height: 4px;
+    }
+    
+    &:nth-child(1):before {
+      background-color: yellow;
+    }
+    
+    &:nth-child(1):after {
+      background-color: red;
+    }
+    
+    &:nth-child(2):before {
+      background-color: #00e2ff;
+    }
+    
+    &:nth-child(2):after {
+      background-color: #89ff00;
+    }
+    
+    &:nth-child(3):before {
+      background-color: rgb(255, 204, 0);
+    }
+    
+    &:nth-child(3):after {
+      background-color: rgb(58, 4, 255);
+    }
+
+    &:nth-child(4):before {
+      background-color: yellow;
+    }
+    
+    &:nth-child(4):after {
+      background-color: red;
+    }
+
+    &:nth-child(5):before {
+      background-color: #00e2ff;
+    }
+    
+    &:nth-child(5):after {
+      background-color: #89ff00;
+    }
+
+    &:nth-child(6):before {
+      background-color: rgb(255, 204, 0);
+    }
+    
+    &:nth-child(6):after {
+      background-color: rgb(58, 4, 255);
+    }
+}
+}
+
+  .imglogo {
+    width: 130px;
+    height: 60px;
+    object-fit: cover;
+  }
+  .ami {
+    position: relative;
+  }
